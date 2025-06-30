@@ -1,3 +1,4 @@
+import React from "react"
 import { PostCard } from "../../entities/post/ui/PostCard"
 
 type objProps = {
@@ -16,12 +17,12 @@ export const PostList: React.FC<PostListProps> = ({array}) => {
       <>
         <ul>
             {array.map(obj => (
-                <li key={obj.id}>
+                <React.Fragment key={obj.id}>
                     <PostCard>
                         <h2>{obj.title}</h2>
                         <h4>{obj.body}</h4>
                     </PostCard>
-                </li>
+                </React.Fragment>
             ))}
         </ul>
       </>
