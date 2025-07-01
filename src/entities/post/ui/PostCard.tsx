@@ -7,10 +7,8 @@ type PostCardProps = {
 
 export const PostCard: React.FC<PostCardProps> = ({children}) => {
     return (
-      <>
         <div>
             {children}
         </div>
-      </>
     )
 }
