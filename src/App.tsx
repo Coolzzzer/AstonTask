@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
 import './App.css'
 import { MainLayout } from './shared/layouts/MainLayout'
-import { PostList } from './widgets/PostList/PostList'
+import { PostListWithLoading } from './shared/lib/hoc/PostListWithLoading';
 
-const array = [
+const posts = [
   {
     userId: 1,
     id: 1,
@@ -36,12 +37,17 @@ const array = [
 ]
 
 function App() {
-
+  const [minLength, setMinLength] = useState(10);
+  const [isLoading, setIsLoading] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
-      <MainLayout>
-        <PostList array={array}/>
-      </MainLayout>
-  )
+    <MainLayout>
+      <PostListWithLoading posts={posts} minLength={10} isLoading={isLoading} />
+    </MainLayout>
+  );
 }
 
 export default App
