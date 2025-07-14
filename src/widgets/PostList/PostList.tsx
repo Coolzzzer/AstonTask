@@ -1,21 +1,26 @@
 import { useMemo, useCallback, type FC } from "react";
 import { filterByLength } from "../../features/PostLengthFilter/lib/filterByLength";
 import { CommentList } from "../CommentList/ui/CommentList";
+import { NavLink } from "react-router-dom";
 type PostListProps = {
-    posts: { title: string, body:string }[],
+    posts: { post: string, comment:string, id: number}[],
     minLength: number,
 }
 export const PostList:FC<PostListProps> = ({ posts, minLength}) => {
-    const filteredPosts: { title: string; body: string }[] = useMemo(
-        () => filterByLength(posts, minLength),
-        [posts, minLength]
-      );      
+  const filteredPosts: { post: string; comment: string; id: number }[] = useMemo(
+    () => filterByLength(posts, minLength),
+    [posts, minLength]
+  );
+        
 
   const renderPost = useCallback(
-    (post: { title: string, body: string }, index: number) => 
-        <div style={{background:"grey", margin:"5px", width:"800px", padding:"10px"}} key={index}>{post.title} 
-            <CommentList comments={post.body}/>
-        </div>,
+    (post: { post: string, comment: string, id: number}, index: number) => 
+      
+        <div style={{background:"grey", margin:"10px", width:"800px", padding:"10px"}} key={index}>{post.post} 
+          <CommentList comments={post.comment} />
+          <button style={{margin:"5px"}}><NavLink to={`/posts/${post.id}`}>Details</NavLink></button>         
+        </div>
+,
     []
   );
 

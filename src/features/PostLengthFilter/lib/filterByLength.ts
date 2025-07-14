@@ -1,9 +1,4 @@
-export function filterByLength(
-    posts: { title: string; body: string }[],
-    minLength: number
-  ): { title: string; body: string }[] {
-    return posts.filter(post => post.body.length >= minLength);
-  }
-  
-  
-  
+export const filterByLength = (
+  posts: { post: string; comment: string; id: number }[],
+  minLength: number
+) => posts.filter(post => post.post.length >= minLength);

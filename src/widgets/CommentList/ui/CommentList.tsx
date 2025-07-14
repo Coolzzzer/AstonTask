@@ -1,6 +1,6 @@
 import { useState, useCallback, type FC } from "react";
 type CommentListProps = {
-    comments:string
+    comments:string,
 }
 export const CommentList:FC<CommentListProps> = ({comments}) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -13,7 +13,8 @@ export const CommentList:FC<CommentListProps> = ({comments}) => {
     <div>
         {!collapsed && (
         <div>
-          {comments}
+          <br/>
+          Comment: {comments} 
         </div>
       )}
       <button onClick={toggle}>{collapsed ? "Show" : "Hide"} comments</button>

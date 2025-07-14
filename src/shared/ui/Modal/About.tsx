@@ -12,7 +12,7 @@ export const About: React.FC<AboutProps> = ({ onClose }) => {
       <div className={clsx(AboutStyle.modalOverlay)} onClick={onClose}>
       <div className={clsx(AboutStyle.modalContent)} onClick={(e) => e.stopPropagation()}>
         <h2>About the project</h2>
-        <p>Homework 2</p>
+        <p>Homework</p>
         <button onClick={onClose}>Close</button>
       </div>
     </div>,

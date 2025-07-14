@@ -3,7 +3,7 @@ import { withLoading } from "./withLoading";
 import { PostList } from "../../../widgets/PostList/PostList";
 
 export const PostListWithLoading: FC<{
-  posts: { title: string; body: string }[];
+  posts: { post: string; comment: string; userId: number}[];
   minLength: number;
   isLoading: boolean;
 }> = withLoading(PostList);
