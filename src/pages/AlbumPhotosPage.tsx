@@ -16,10 +16,6 @@ export const AlbumPhotosPage  = () => {
         []
       )
     return (
-        <div>
             <ul>{posts.map(renderPostDetails)}</ul>
-            <button style={{margin:"5px"}}><NavLink to={`/posts`}>Back</NavLink></button>   
-        </div>
-         
     )
 }

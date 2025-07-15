@@ -6,8 +6,8 @@ export const UserAlbumsPage = () => {
     const posts = usePosts()
     const renderPostImg = useCallback(
         (post: { img:string, id: number}, index: number) => 
-            <NavLink to={`/albums/${post.id}/photos`}>
-                <img key={index} src={post.img} style={{width:"400px", margin:"10px"}}></img>
+            <NavLink key={index} to={`/albums/${post.id}/photos`}>
+                <img src={post.img} style={{width:"400px", margin:"10px"}}></img>
             </NavLink>,
         []
       )
