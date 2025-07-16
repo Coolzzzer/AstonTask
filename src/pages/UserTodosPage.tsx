@@ -1,14 +1,22 @@
-import { useCallback } from "react";
-import { usePosts } from "../features/PostList/model/hooks/usePosts"
+import { useParams } from "react-router-dom";
+import { useGetTodosByUserIdQuery } from "../entities/post/todosApi";
 
-export const UserTodosPage  = () => {
-    const posts = usePosts()
-    const renderPostTodos = useCallback(
-        (post: { todos:string}, index: number) => 
-            <li key={index}>{post.todos}</li>,
-        []
-      )
-    return (
-         <ul>{posts.map(renderPostTodos)}</ul>
-    )
-}
+
+export const UserTodosPage = () => {
+    const { userId } = useParams();
+    const id = Number(userId);
+
+  const { data: todos = [], isLoading } = useGetTodosByUserIdQuery(id);
+
+  if (isLoading) return <div>Loading todos...</div>;
+
+  return (
+    <ul>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+            {todo.completed ? "✅" : "⬜"} {todo.title}
+        </div>
+      ))}
+    </ul>
+  );
+};

@@ -1,6 +1,5 @@
 import { useCallback } from "react";
 import { usePosts } from "../features/PostList/model/hooks/usePosts"
-import { NavLink } from "react-router-dom";
 
 export const AlbumPhotosPage  = () => {
     const posts = usePosts()

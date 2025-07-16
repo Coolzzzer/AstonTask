@@ -1,17 +1,21 @@
-import { useCallback } from "react";
-import { usePosts } from "../features/PostList/model/hooks/usePosts"
-import { NavLink } from "react-router-dom";
+import { useParams} from "react-router-dom";
+import { useGetAlbumsByUserIdQuery } from "../entities/post/albumsApi";
+
 
 export const UserAlbumsPage = () => {
-    const posts = usePosts()
-    const renderPostImg = useCallback(
-        (post: { img:string, id: number}, index: number) => 
-            <NavLink key={index} to={`/albums/${post.id}/photos`}>
-                <img src={post.img} style={{width:"400px", margin:"10px"}}></img>
-            </NavLink>,
-        []
-      )
-    return (
-         <div>{posts.map(renderPostImg)}</div>
-    )
-}
+  const { userId } = useParams();
+  const id = Number(userId);
+
+  const { data: albums = [], isLoading } = useGetAlbumsByUserIdQuery(id);
+
+  if (isLoading) return <div>Loading albums...</div>;
+  return (
+    <div>
+      {albums.map((album) => (
+          <div  key={album.id} style={{ margin: "10px", padding: "10px", background: "#eee", width: "400px" }}>
+            <h4>{album.title}</h4>
+          </div>
+      ))}
+    </div>
+  );
+};

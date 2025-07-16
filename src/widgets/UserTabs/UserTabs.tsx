@@ -5,13 +5,14 @@ export const UserTabs = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const initialUserId = id ?? "1";
-  const [userId, setUserId] = useState(initialUserId);
-
+  const obj = useParams()
+  const initialId = id ?? "1";
+  const [userId, setUserId] = useState(initialId);
+  const [postId, setPostId] = useState(initialId);
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newId = e.target.value;
     setUserId(newId);
+    setPostId(newId);
     const currentPath = location.pathname.replace(/\/users\/\d+/, `/users/${newId}`);
     navigate(currentPath);
   };
@@ -19,16 +20,15 @@ export const UserTabs = () => {
   return (
     <div>
       <nav style={{ marginBottom: '10px' }}>
-        <NavLink to={`/posts`}>All </NavLink>{" | "}
         <NavLink to={`/users/${userId}/posts`}>Posts </NavLink>{" | "}
+        <NavLink to={`/posts/${postId}/comments`}>Comments </NavLink>{" | "}
         <NavLink to={`/users/${userId}/albums`}>Albums </NavLink>{" | "}
         <NavLink to={`/users/${userId}/todos`}>Todos </NavLink>
       </nav>
-
       <label>
-        User:
+      {obj.hasOwnProperty('userId') ? "User:" : "Comment:"}  
         <select value={userId} onChange={handleSelectChange} style={{ marginLeft: '5px' }}>
-          {Array.from({ length: 2 }, (_, i) => (
+          {Array.from({ length: 10 }, (_, i) => (
             <option key={i + 1} value={(i + 1).toString()}>
               {i + 1}
             </option>

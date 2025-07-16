@@ -1,12 +1,15 @@
-import { usePosts } from "../features/PostList/model/hooks/usePosts";
+import { useParams } from "react-router-dom";
 import { PostList } from "../widgets/PostList/PostList";
-
+import { useGetPostsByUserIdQuery } from "../entities/post/postsApi";
 
 export const UserPostsPage = () => {
-  const posts = usePosts()
+  const { userId } = useParams();
+  const id = Number(userId);
+
+  const { data: posts = [], isLoading } = useGetPostsByUserIdQuery(id);
+
+  if (isLoading) return <div>Loading posts...</div>;
   return (
-    <div>
       <PostList posts={posts} minLength={1} />
-    </div>
   );
 };
