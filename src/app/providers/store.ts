@@ -6,6 +6,8 @@ import { todosApi } from '../../entities/post/todosApi';
 import { albumsApi } from '../../entities/post/albumsApi';
 import postReducer from '../../entities/model/slice/postSlice';
 import userReducer from '../../entities/model/slice/userSlice';
+import { usersApi } from '../../entities/post/usersApi';
+import { photosApi } from '../../entities/post/photosAli';
 
 export const store = configureStore({
   reducer: {
@@ -13,15 +15,20 @@ export const store = configureStore({
     [commentsApi.reducerPath]: commentsApi.reducer,
     [albumsApi.reducerPath]: albumsApi.reducer,
     [todosApi.reducerPath]: todosApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
+    [photosApi.reducerPath]: photosApi.reducer,
     post: postReducer,
     user: userReducer,
+    album: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
+      usersApi.middleware,
       postsApi.middleware,
       commentsApi.middleware,
       albumsApi.middleware,
-      todosApi.middleware
+      todosApi.middleware,
+      photosApi.middleware
     ),
 });
 

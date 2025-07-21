@@ -20,20 +20,27 @@ export const UserTabs = () => {
   return (
     <div>
       <nav style={{ marginBottom: '10px' }}>
+        <NavLink to={`/users`}>Users </NavLink>{" | "}
         <NavLink to={`/users/${userId}/posts`}>Posts </NavLink>{" | "}
         <NavLink to={`/posts/${postId}/comments`}>Comments </NavLink>{" | "}
         <NavLink to={`/users/${userId}/albums`}>Albums </NavLink>{" | "}
         <NavLink to={`/users/${userId}/todos`}>Todos </NavLink>
       </nav>
       <label>
-      {obj.hasOwnProperty('userId') ? "User:" : "Comment:"}  
+      {obj.hasOwnProperty('userId') ? 
+      <>
+        User:
         <select value={userId} onChange={handleSelectChange} style={{ marginLeft: '5px' }}>
-          {Array.from({ length: 10 }, (_, i) => (
+        {Array.from({ length: 10 }, (_, i) => (
             <option key={i + 1} value={(i + 1).toString()}>
               {i + 1}
             </option>
           ))}
         </select>
+      </>
+      : 
+        null
+      }  
       </label>
 
       <Outlet />

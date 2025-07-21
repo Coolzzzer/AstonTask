@@ -7,7 +7,7 @@ const CommentPage = () => {
   const { postId } = useParams();
   const id = Number(postId);
   const { data: posts = [], isLoading } = useGetCommentsByPostIdQuery(id);
-  if (isLoading) return <div>Loading albums...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
       <PostList posts={posts} minLength={1} />

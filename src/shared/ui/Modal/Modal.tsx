@@ -1,7 +1,4 @@
-import { createContext} from "react";
-
-export const ModalContext = createContext<{ onClose: () => void }>({ onClose: () => {} });
-
+import { ModalContext } from "../../contexts/ModalContext";
 export const Modal = ({ children, onClose }: { children: React.ReactNode; onClose: () => void }) => (
   <ModalContext.Provider value={{ onClose }}>
     <div className="modal-overlay" onClick={onClose}>

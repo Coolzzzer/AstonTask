@@ -8,7 +8,7 @@ const UserPostsPage = () => {
 
   const { data: posts = [], isLoading } = useGetPostsByUserIdQuery(id);
 
-  if (isLoading) return <div>Loading posts...</div>;
+  if (isLoading) return <div>Loading...</div>;
   return (
       <PostList posts={posts} minLength={1} />
   );

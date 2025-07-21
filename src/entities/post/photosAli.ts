@@ -1,19 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-type Post = {
-    userId: number;
+type Photos = {
     id: number;
     title: string;
-    body: string;
+    url: string;
   }
   
-  export const postsApi = createApi({
-    reducerPath: 'postsApi',
+  export const photosApi = createApi({
+    reducerPath: 'photosApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com' }),
     tagTypes: ['Post'],
     endpoints: (builder) => ({
-      getPostsByUserId: builder.query<Post[], number>({
-        query: (userId) => `/posts?userId=${userId}`,
+      getPhotosByAlbumId: builder.query<Photos[], number>({
+        query: (albumId) => `/photos?albumId=${albumId}`,
         providesTags: (result) =>
           result
             ? result.map(({ id }) => ({ type: 'Post', id }))
@@ -22,4 +21,4 @@ type Post = {
     }),
   });
 
-  export const { useGetPostsByUserIdQuery } = postsApi;
+  export const { useGetPhotosByAlbumIdQuery } = photosApi;

@@ -8,7 +8,7 @@ const UserTodosPage = () => {
 
   const { data: todos = [], isLoading } = useGetTodosByUserIdQuery(id);
 
-  if (isLoading) return <div>Loading todos...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <ul>
