@@ -1,6 +1,6 @@
-import { usePosts } from "../features/PostList/model/hooks/usePosts"
+import { usePosts } from "../../features/PostList/model/hooks/usePosts"
 
-export const PostDetailsPage  = () => {
+const PostDetailsPage  = () => {
     const posts = usePosts()
 
     return (
@@ -22,3 +22,4 @@ export const PostDetailsPage  = () => {
         </ul>
     )
 }
+export default PostDetailsPage

@@ -1,6 +1,6 @@
-import { usePosts } from "../features/PostList/model/hooks/usePosts"
+import { usePosts } from "../../features/PostList/model/hooks/usePosts"
 
-export const AlbumPhotosPage  = () => {
+const AlbumPhotosPage  = () => {
     const posts = usePosts()
     return (
             <ul>
@@ -18,3 +18,4 @@ export const AlbumPhotosPage  = () => {
             </ul>
     )
 }
+export default AlbumPhotosPage

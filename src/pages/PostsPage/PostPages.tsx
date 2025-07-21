@@ -1,8 +1,8 @@
 import { useEffect, useState} from "react";
-import { PostListWithLoading } from "../shared/lib/hoc/PostListWithLoading";
-import { usePosts } from "../features/PostList/model/hooks/usePosts";
+import { PostListWithLoading } from "../../shared/lib/hoc/PostListWithLoading";
+import { usePosts } from "../../features/PostList/model/hooks/usePosts";
 
-export const PostsPage = () => {
+const PostsPage = () => {
   const posts = usePosts()
   const [minLength, setMinLength] = useState(10);
   const [isLoading, setIsLoading] = useState(true)
@@ -16,3 +16,4 @@ export const PostsPage = () => {
       <PostListWithLoading posts={posts} minLength={minLength} isLoading={isLoading}/>
   )
 }
+export default PostsPage

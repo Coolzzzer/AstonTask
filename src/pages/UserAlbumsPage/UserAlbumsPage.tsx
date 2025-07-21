@@ -1,7 +1,7 @@
-import { usePosts } from "../features/PostList/model/hooks/usePosts"
+import { usePosts } from "../../features/PostList/model/hooks/usePosts"
 import { NavLink } from "react-router-dom";
 
-export const UserAlbumsPage = () => {
+const UserAlbumsPage = () => {
     const posts = usePosts()
     return (
          <div>
@@ -15,3 +15,4 @@ export const UserAlbumsPage = () => {
         </div>
     )
 }
+export default UserAlbumsPage

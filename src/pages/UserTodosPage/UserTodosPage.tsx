@@ -1,7 +1,7 @@
 import { useCallback } from "react";
-import { usePosts } from "../features/PostList/model/hooks/usePosts"
+import { usePosts } from "../../features/PostList/model/hooks/usePosts"
 
-export const UserTodosPage  = () => {
+const UserTodosPage  = () => {
     const posts = usePosts()
     const renderPostTodos = useCallback(
         (post: { todos:string}, index: number) => 
@@ -12,3 +12,4 @@ export const UserTodosPage  = () => {
          <ul>{posts.map(renderPostTodos)}</ul>
     )
 }
+export default UserTodosPage

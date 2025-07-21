@@ -1,13 +1,13 @@
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
-import { PostsPage } from '../../../pages/PostPages';
-import { PostDetailsPage } from '../../../pages/PostDetailsPage';
-import { UserAlbumsPage } from '../../../pages/UserAlbumsPage';
-import { AlbumPhotosPage } from '../../../pages/AlbumPhotosPage';
-import { UserTodosPage } from '../../../pages/UserTodosPage';
-import { StrictMode } from 'react';
+import { lazy, StrictMode, Suspense } from 'react';
 import { UserTabs } from '../../../widgets/UserTabs/UserTabs';
-import { UserPostsPage } from '../../../pages/UserPostsPage';
 
+const  UserPostsPage = lazy(() => import('../../../pages/UserPostsPage/UserPostsPage'));
+const  PostsPage = lazy(() => import('../../../pages/PostsPage/PostPages'));
+const  PostDetailsPage = lazy(() => import('../../../pages/PostDetailsPage/PostDetailsPage'));
+const  UserAlbumsPage = lazy(() => import('../../../pages/UserAlbumsPage/UserAlbumsPage'));
+const  AlbumPhotosPage = lazy(() => import('../../../pages/AlbumPhotosPage/AlbumPhotosPage'));
+const  UserTodosPage = lazy(() => import('../../../pages/UserTodosPage/UserTodosPage'));
 
 
 export const AppRouter = () => {
@@ -16,18 +16,21 @@ export const AppRouter = () => {
       path: "/",
       element: <UserTabs/>,
       children: [
-        { index: true, path: "posts", element: <PostsPage/> },
+        { index: true, element: <PostsPage/> },
+        { path: "posts", element: <PostsPage/> },
         { path: "posts/:id", element: <PostDetailsPage/> },
         { path: "users/:userId/albums", element: <UserAlbumsPage/> },
         { path: "albums/:id/photos", element: <AlbumPhotosPage/> },
-        { path: "/users/:userId/todos", element: <UserTodosPage/> },
-        { path: "/users/:userId/posts", element: <UserPostsPage/> },
+        { path: "users/:userId/todos", element: <UserTodosPage/> },
+        { path: "users/:userId/posts", element: <UserPostsPage/> },
       ],
     }
   ]);
   return (
     <StrictMode>
-      <RouterProvider router={router} />
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </StrictMode>
   );
 };
