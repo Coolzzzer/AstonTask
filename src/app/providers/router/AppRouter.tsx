@@ -16,7 +16,7 @@ export const AppRouter = () => {
       path: "/",
       element: <UserTabs/>,
       children: [
-        { path: "posts", element: <PostsPage/> },
+        { index: true, path: "posts", element: <PostsPage/> },
         { path: "posts/:id", element: <PostDetailsPage/> },
         { path: "users/:userId/albums", element: <UserAlbumsPage/> },
         { path: "albums/:id/photos", element: <AlbumPhotosPage/> },
