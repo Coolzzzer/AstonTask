@@ -4,11 +4,12 @@ import { useGetAlbumsByUserIdQuery } from "../../entities/post/albumsApi";
 
 const UserAlbumsPage = () => {
   const { userId } = useParams();
-  const id = Number(userId);
-
+  const parsedId = Number(userId);
+  const id = parsedId >= 1 && parsedId <= 10 ? parsedId : 1;
   const { data: albums = [], isLoading } = useGetAlbumsByUserIdQuery(id);
 
   if (isLoading) return <div>Loading...</div>;
+  
   return (
     <div>
       {albums.map((album) => (
