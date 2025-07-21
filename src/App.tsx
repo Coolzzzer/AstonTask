@@ -37,7 +37,6 @@ const posts = [
 ]
 
 function App() {
-  const [minLength, setMinLength] = useState(10);
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000);

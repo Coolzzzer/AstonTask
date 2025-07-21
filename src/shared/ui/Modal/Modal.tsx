@@ -1,6 +1,4 @@
-import { createContext} from "react";
-
-export const ModalContext = createContext<{ onClose: () => void }>({ onClose: () => {} });
+import { ModalContext } from "../../context/ModalContext";
 
 export const Modal = ({ children, onClose }: { children: React.ReactNode; onClose: () => void }) => (
   <ModalContext.Provider value={{ onClose }}>
@@ -9,5 +7,5 @@ export const Modal = ({ children, onClose }: { children: React.ReactNode; onClos
         {children}
       </div>
     </div>
-  </ModalContext.Provider>
+  </ModalContext.Provider> 
 );
