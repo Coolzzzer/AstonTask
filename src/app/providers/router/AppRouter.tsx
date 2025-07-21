@@ -1,12 +1,11 @@
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
-import { StrictMode } from 'react';
-
+import { lazy, StrictMode, Suspense } from 'react';
 import { UserTabs } from '../../../widgets/UserTabs/UserTabs';
-import { UserAlbumsPage } from '../../../pages/UserAlbumsPage';
-import { UserTodosPage } from '../../../pages/UserTodosPage';
-import { UserPostsPage } from '../../../pages/UserPostsPage';
-import { CommentPage } from '../../../pages/CommentPages';
 
+const  CommentPage = lazy(() => import('../../../pages/CommentPage/CommentPages'));
+const  UserPostsPage = lazy(() => import('../../../pages/UserPostsPage/UserPostsPage'));
+const  UserAlbumsPage = lazy(() => import('../../../pages/UserAlbumsPage/UserAlbumsPage'));
+const  UserTodosPage = lazy(() => import('../../../pages/UserTodosPage/UserTodosPage'));
 
 
 export const AppRouter = () => {
@@ -15,6 +14,7 @@ export const AppRouter = () => {
       path: "/",
       element: <UserTabs/>,
       children: [
+        { index: true, element: <UserPostsPage/> },
         { path: "/users/:userId/posts", element: <UserPostsPage/> },
         { path: "/posts/:postId/comments", element: <CommentPage/> },
         { path: "users/:userId/albums", element: <UserAlbumsPage/> },
@@ -24,7 +24,9 @@ export const AppRouter = () => {
   ]);
   return (
     <StrictMode>
-      <RouterProvider router={router} />
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </StrictMode>
   );
 };

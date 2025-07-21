@@ -1,8 +1,8 @@
 import { useParams} from "react-router-dom";
-import { useGetAlbumsByUserIdQuery } from "../entities/post/albumsApi";
+import { useGetAlbumsByUserIdQuery } from "../../entities/post/albumsApi";
 
 
-export const UserAlbumsPage = () => {
+const UserAlbumsPage = () => {
   const { userId } = useParams();
   const id = Number(userId);
 
@@ -19,3 +19,4 @@ export const UserAlbumsPage = () => {
     </div>
   );
 };
+export default UserAlbumsPage

@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { PostList } from "../widgets/PostList/PostList";
-import { useGetPostsByUserIdQuery } from "../entities/post/postsApi";
+import { PostList } from "../../widgets/PostList/PostList";
+import { useGetPostsByUserIdQuery } from "../../entities/post/postsApi";
 
-export const UserPostsPage = () => {
+const UserPostsPage = () => {
   const { userId } = useParams();
   const id = Number(userId);
 
@@ -13,3 +13,4 @@ export const UserPostsPage = () => {
       <PostList posts={posts} minLength={1} />
   );
 };
+export default UserPostsPage

@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useGetTodosByUserIdQuery } from "../entities/post/todosApi";
+import { useGetTodosByUserIdQuery } from "../../entities/post/todosApi";
 
 
-export const UserTodosPage = () => {
+const UserTodosPage = () => {
     const { userId } = useParams();
     const id = Number(userId);
 
@@ -20,3 +20,4 @@ export const UserTodosPage = () => {
     </ul>
   );
 };
+export default UserTodosPage
