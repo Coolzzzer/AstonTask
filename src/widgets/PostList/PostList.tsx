@@ -1,27 +1,32 @@
-import React from "react"
-import { PostCard } from "../../entities/post/ui/PostCard"
+import { type FC } from "react";
+import { filterByLength } from "../../features/PostLengthFilter/lib/filterByLength";
+import { CommentList } from "../CommentList/ui/CommentList";
+import { NavLink } from "react-router-dom";
+import type { PostListProps } from "../../shared/types/post";
 
-type objProps = {
-    id: number,
-    title: string,
-    body: string
-}
+export const PostList: FC<PostListProps> = ({ posts, minLength }) => {
+  const filteredPosts: { post: string; comment: string; id: number }[] = filterByLength(posts, minLength);
 
-type PostListProps = {
-    array: objProps[]
-}
-
-export const PostList: React.FC<PostListProps> = ({array}) => {
-
-    return (
-        <ul>
-            {array.map(obj => (
-                <PostCard key={obj.id}>
-                    <h2>{obj.title}</h2>
-                    <h4>{obj.body}</h4>
-                </PostCard>
-            ))}
-        </ul>
-    )
-}
+  return (
+    <ul>
+      {filteredPosts.map((post, index) => (
+        <div
+          style={{
+            background: "grey",
+            margin: "10px",
+            width: "800px",
+            padding: "10px",
+          }}
+          key={index}
+        >
+          {post.post}
+          <CommentList comments={post.comment} />
+          <button style={{ margin: "5px" }}>
+            <NavLink to={`/posts/${post.id}`}>Details</NavLink>
+          </button>
+        </div>
+      ))}
+    </ul>
+  );
+};
 
