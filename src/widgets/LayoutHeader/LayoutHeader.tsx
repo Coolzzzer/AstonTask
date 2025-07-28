@@ -14,7 +14,7 @@ export const LayoutHeader = () => {
 
   return (
     <>
-      <button onClick={handleOpenModal}>О проекте</button>
+      <button onClick={handleOpenModal}>About the project</button>
       {showModal && <About onClose={handleCloseModal} />}
     </>
   );
