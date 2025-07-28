@@ -1,13 +1,8 @@
-import { useState, type ReactNode, useEffect} from "react";
-
+import { useState, useEffect, type PropsWithChildren} from "react";
 import { ThemeSwitcher } from "../../../features/ThemeSwitcher/ui/ThemeSwitcher";
 import { ThemeContext } from "./ThemeContext";
 
-type ThemeProviderProps = {
-  children: ReactNode;
-};
-
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const [theme, setTheme] = useState("light");
   const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"))
