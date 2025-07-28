@@ -1,13 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-type Comment = {
-    postId: number;
-    id: number;
-    name: string;
-    email: string;
-    body: string;
-  }
-  
+import type { Comment } from '../types/commentTypes';
+ 
 export const commentsApi = createApi({
   reducerPath: 'commentsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com' }),

@@ -1,11 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-type Photos = {
-    id: number;
-    title: string;
-    url: string;
-  }
-  
+import type { Photos } from '../types/photosTypes';
+ 
   export const photosApi = createApi({
     reducerPath: 'photosApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com' }),
