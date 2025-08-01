@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { postsApi } from '../../entities/post/postsApi';
-import { commentsApi } from '../../entities/post/commentsApi';
-import { todosApi } from '../../entities/post/todosApi';
-import { albumsApi } from '../../entities/post/albumsApi';
-import postReducer from '../../entities/model/slice/postSlice';
-import userReducer from '../../entities/model/slice/userSlice';
-import { usersApi } from '../../entities/post/usersApi';
-import { photosApi } from '../../entities/post/photosAli';
+import { postsApi } from '../../../entities/post/postsApi';
+import { commentsApi } from '../../../entities/post/commentsApi';
+import { todosApi } from '../../../entities/post/todosApi';
+import { albumsApi } from '../../../entities/post/albumsApi';
+import postReducer from '../../../entities/post/model/slice/postSlice';
+import userReducer from '../../../entities/user/model/slice/userSlice';
+import { usersApi } from '../../../entities/post/usersApi';
+import { photosApi } from '../../../entities/post/photosAli';
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +19,6 @@ export const store = configureStore({
     [photosApi.reducerPath]: photosApi.reducer,
     post: postReducer,
     user: userReducer,
-    album: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
