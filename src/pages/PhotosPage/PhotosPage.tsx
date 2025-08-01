@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetPhotosByAlbumIdQuery } from "../../entities/post/photosAli";
+import { Photo } from "../../entities/photo/ui/Photo";
 
 
 const PhotosPage  = () => {
@@ -9,14 +10,11 @@ const PhotosPage  = () => {
     const { data: photos = [], isLoading } = useGetPhotosByAlbumIdQuery(id);
     if (isLoading) return <div>Loading...</div>;
     return (
-            <ul>
-                {photos.map((photo)=>(
-                    <div key={photo.id} style={{ margin: "10px", padding: "10px", background: "#eee", width: "400px" }}>
-                        <h4>{photo.title}</h4>
-                        <img src={photo.url}/>
-                    </div>
-                ))}
-            </ul>
+        <ul>
+            {photos.map((photo) => (
+            <Photo key={photo.id} photo={photo} />
+            ))}
+        </ul>
     )
 }
 export default PhotosPage 

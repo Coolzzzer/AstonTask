@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetTodosByUserIdQuery } from "../../entities/post/todosApi";
+import { Todo } from "../../entities/todo/ui/Todo";
+
 
 
 const UserTodosPage = () => {
@@ -13,9 +15,7 @@ const UserTodosPage = () => {
   return (
     <ul>
       {todos.map((todo) => (
-        <div key={todo.id}>
-            {todo.completed ? "✅" : "⬜"} {todo.title}
-        </div>
+        <Todo key={todo.id} todo={todo} />
       ))}
     </ul>
   );
